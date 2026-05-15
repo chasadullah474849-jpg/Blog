@@ -21,13 +21,13 @@
        }
          label
              {
-            
+
             display: inline-block;
             width:200px;
             color:white;
             font-size:18px;
             font-weight:bold;
-            
+
         }
          .input_deg
         {
@@ -76,14 +76,14 @@
              <input type="file" name="image">
             </div>
              <div  class="input_deg">
-                
+
                <input type="submit" class="btn btn-secondary" value="Update">
             </div>
         </form>
        </div>
-        
+
       </div>
-     
+
      @include('home.footer')
    </body>
 </html>

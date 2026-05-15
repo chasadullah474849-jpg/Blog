@@ -1,88 +1,146 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <!-- basic -->
-       <style type="text/css">
-     .div_deg
-        {
-              text-align: center;
+<head>
+
+    @include('home.homecss')
+
+    <style>
+
+        body{
+            background: #0f172a;
+            font-family: Arial, sans-serif;
         }
-        .title_deg
-        {
-            font-size:30px;
-            font-weight:bold;
-            color:white;
-             padding:20px;
+
+        .page_wrapper{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 15px;
         }
-        label
-             {
-            
-            display: inline-block;
-            width:200px;
-            color:white;
-            font-size:18px;
-            font-weight:bold;
-            
+
+        .form_card{
+            background: #1f2937;
+            padding: 40px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 700px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
         }
-        .field_deg
-        {
-            padding:20px;
+
+        .title_deg{
+            font-size: 32px;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
         }
-        
-       </style>
-      @include('home.homecss')
-   </head>
-   <body>
-    @include('sweetalert::alert')
 
-   <!-- header section start -->
-   <div class="header_section">
-      @include('home.header')
-   
-   <!-- header section end -->
+        label{
+            color: #e5e7eb;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: block;
+        }
 
-   <!-- form section -->
-  <div class="div_deg">
-   <h3 class="title_deg">Add Post</h3>
+        .field{
+            margin-bottom: 20px;
+        }
 
-   <form action="{{url('user_post')}}" method="POST" enctype="multipart/form-data">
-      @csrf
+        input[type="text"],
+        textarea,
+        input[type="file"]{
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            background: #111827;
+            color: white;
+        }
 
-      <div class="field_deg">
-         <label>Title</label>
-         <input type="text" name="title" class="form-control w-50 mx-auto" required>
-      </div>
+        textarea{
+            min-height: 150px;
+        }
 
-      <div class="field_deg">
-         <label>Description</label>
-         <textarea name="description" id="description" class="form-control w-50 mx-auto"></textarea>
-      </div>
+        .btn_submit{
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
 
-      <div class="field_deg">
-         <label>Add Image</label>
-         <input type="file" name="image" class="form-control w-50 mx-auto">
-      </div>
+        .btn_submit:hover{
+            transform: scale(1.03);
+        }
 
-      <div class="field_deg">
-         <input type="submit" value="Add Post" class="btn btn-primary px-4">
-      </div>
+        /* CKEditor styling */
+        .ck-editor__editable{
+            min-height: 180px;
+            background: white !important;
+            color: black !important;
+            border-radius: 10px;
+        }
 
-   </form>
+    </style>
+
+</head>
+
+<body>
+
+@include('sweetalert::alert')
+
+@include('home.header')
+
+<div class="page_wrapper">
+
+    <div class="form_card">
+
+        <h3 class="title_deg">Create New Post</h3>
+
+        <form action="{{url('user_post')}}" method="POST" enctype="multipart/form-data">
+            @csrf
+
+            <div class="field">
+                <label>Title</label>
+                <input type="text" name="title" required>
+            </div>
+
+            <div class="field">
+                <label>Description</label>
+                <textarea name="description" id="description"></textarea>
+            </div>
+
+            <div class="field">
+                <label>Upload Image</label>
+                <input type="file" name="image">
+            </div>
+
+            <button type="submit" class="btn_submit">
+                Publish Post
+            </button>
+
+        </form>
+
+    </div>
+
 </div>
-   @include('home.footer')
 
+@include('home.footer')
 
-   <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
 
-   <script>
-    ClassicEditor
-        .create(document.querySelector('#description'))
-        .catch(error => {
-            console.error(error);
-        });
+<script>
+ClassicEditor
+    .create(document.querySelector('#description'))
+    .catch(error => console.error(error));
 </script>
 
 </body>
+</html>
